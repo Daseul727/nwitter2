@@ -11,60 +11,80 @@ const Profile = ({ userObj }) => {
     const [nweets, setNweets] = useState([]);
     const navigate = useNavigate();
     
+    const [newDisplayName, setNewDisplayName] = useState(userObj.displayName);
+
     const onLogOutClick = () => {
         authService.signOut();
         navigate("/");
     };
 
-    const getMyNweets = async () => {
+    const onChange = (event) => {
+        const {
+            target: { value },
+        } = event;
+        setNewDisplayName(value);
+    }
+    
+    const onSubmit = (event) => {
+        event.preventDefault();
+    }
 
-        // const nweets = collection(dbService, 'nweets').where("creatorO=Id","===","userObj.uid");
-        // let allTodos = await getDocs(nweets);
+//     const getMyNweets = async () => {
+
+//         // const nweets = collection(dbService, 'nweets').where("creatorO=Id","===","userObj.uid");
+//         // let allTodos = await getDocs(nweets);
         
-        // const nweets = await getDoc(collection,"nweets")
-        //         .where("creatorId","===",userObj.uid)
-        //         .orderBy("createdAt","asc").data();
+//         // const nweets = await getDoc(collection,"nweets")
+//         //         .where("creatorId","===",userObj.uid)
+//         //         .orderBy("createdAt","asc").data();
 
 
-        // const citiesRef = collection(dbService, "nweets");
-        // const q = query(citiesRef, where("creatorId", "==", userObj.uid));
+//         // const citiesRef = collection(dbService, "nweets");
+//         // const q = query(citiesRef, where("creatorId", "==", userObj.uid));
         
-        // const querySnapshot = await getDocs(q);
+//         // const querySnapshot = await getDocs(q);
  
-        //const nweetArray = querySnapshot.forEach((doc) => {
-        //     console.log(doc.id, " => ", doc.data());
-        // });
-        //setNweets(nweetArray);
+//         //const nweetArray = querySnapshot.forEach((doc) => {
+//         //     console.log(doc.id, " => ", doc.data());
+//         // });
+//         //setNweets(nweetArray);
 
-        const q = query(collection(dbService, 'nweets'),where("creatorId", "==", userObj.uid), orderBy('createdAt', 'asc'));
-        onSnapshot(q, (querySnapshot) => {
-            const newArray = querySnapshot.docs.map((doc) => {
-            return {
-                id: doc.id,
-                ...doc.data(),
-                }
-            });
-            setNweets(newArray);
-        });
-}
+//         const q = query(collection(dbService, 'nweets'),where("creatorId", "==", userObj.uid), orderBy('createdAt', 'asc'));
+//         onSnapshot(q, (querySnapshot) => {
+//             const newArray = querySnapshot.docs.map((doc) => {
+//             return {
+//                 id: doc.id,
+//                 ...doc.data(),
+//                 }
+//             });
+//             setNweets(newArray);
+//         });
+// }
 
-    useEffect(() => {
-        getMyNweets();
-    }, []);
+//     useEffect(() => {
+//         getMyNweets();
+//     }, []);
+
+    
 
     return (
         <>
-        <div>
+        {/* <div>
             {nweets.map((nweet) => (
                 // <div key={nweet.id}>
                 //     <h4>{nweet.text}</h4> 
                 // </div>
                 <Nweet key={nweet.id} nweetObj={nweet} isOwner={nweet.creatorId === userObj.uid}/>
             ))}
-        </div>
-        <div>
+        </div> */}
+        <form onSubmit={onSubmit}>
+            <input type="text" placeholder="Display name" onChange={onChange} value={newDisplayName} />
+            <input type="submit" value="Update Profile" />
+        </form>
+        <button onClick={onLogOutClick}>Log Out</button>
+        {/* <div>
             <button onClick={onLogOutClick}>Log Out</button>
-        </div>
+        </div> */}
         </>
     );
 
