@@ -5,7 +5,7 @@ import Profile from "routes/Profile";
 import Navigation from "components/navigation";
 
 
-const AppRouter = ({ isLoggendIn }) => {
+const AppRouter = ({ isLoggendIn, userObj }) => {
 
     return (
         <Router>
@@ -13,7 +13,7 @@ const AppRouter = ({ isLoggendIn }) => {
             <Routes>
                 { isLoggendIn? (
                     <>
-                    <Route path="/" element={<Home />} />
+                    <Route path="/" element={<Home userObj={userObj}/>} />
                     <Route path="/profile" element={<Profile />} />
                     </>
                 ) : (
