@@ -32,8 +32,12 @@ function App() {
 
   return (
     <>
-      {init ? (<AppRouter isLoggendIn = {isLoggendIn} userObj={userObj}/> ):( "initializing...")}
-      <footer> &copy; {new Date().getFullYear()} Nwitter </footer>
+      {init ? (
+        <AppRouter isLoggendIn = {isLoggendIn} userObj={userObj}/> 
+        ):( 
+          "initializing..."
+        )}
+       {/* <footer> &copy; {new Date().getFullYear()} Nwitter </footer> */}
     </>
   );
 

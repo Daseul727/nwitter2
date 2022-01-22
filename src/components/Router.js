@@ -3,6 +3,7 @@ import Auth from "routes/Auth";
 import Home from "routes/Home";
 import Profile from "routes/Profile";
 import Navigation from "components/navigation";
+import { useState } from "react/cjs/react.development";
 
 
 const AppRouter = ({ isLoggendIn, userObj }) => {
@@ -14,7 +15,7 @@ const AppRouter = ({ isLoggendIn, userObj }) => {
                 { isLoggendIn? (
                     <>
                     <Route path="/" element={<Home userObj={userObj}/>} />
-                    <Route path="/profile" element={<Profile />} />
+                    <Route path="/profile" element={<Profile userObj={userObj}/>} />
                     </>
                 ) : (
                     <Route path="/" element={<Auth />} />
