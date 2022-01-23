@@ -9,11 +9,8 @@ const Nweet = ({ nweetObj, isOwner}) => {
 
     const onDeleteClick = async() => {
         const ok = window.confirm("삭제하시겠습니까?");
-        console.log(ok);
         if (ok) {
-            //console.log(nweetObj.id);
             //const data = deleteDoc(doc(dbService, "nweets", nweetObj.id));
-            //console.log(data);
 
             deleteDoc(doc(dbService, "nweets", nweetObj.id));
             if(nweetObj.attachmentUrl!==""){
@@ -33,7 +30,6 @@ const Nweet = ({ nweetObj, isOwner}) => {
 
     const onSubmit = async (event) => {
         event.preventDefault();
-        //console.log(nweetObj.id, newNweet);
         updateDoc(doc(dbService, "nweets", nweetObj.id), { text: newNweet });
         setEditing(false);
     };

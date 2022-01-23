@@ -15,7 +15,7 @@ function App() {
   // return <AppRouter />
 
   const [init, setInit] = useState(false);
-  const [isLoggendIn, setIsLogin] = useState(false);
+  //const [isLoggendIn, setIsLogin] = useState(false);
   const [userObj, setUserObj] = useState(null);
 
   useEffect(() => {
@@ -29,7 +29,8 @@ function App() {
           updateProfile: (args) => user.updateProfile(args),
         });
       } else {
-        setIsLogin(false);
+        //setIsLogin(false);
+        setUserObj(false);
       }
       setInit(true);
     });

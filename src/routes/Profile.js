@@ -50,7 +50,6 @@ const Profile = ({ userObj, refreshUser }) => {
 //         // const querySnapshot = await getDocs(q);
  
 //         //const nweetArray = querySnapshot.forEach((doc) => {
-//         //     console.log(doc.id, " => ", doc.data());
 //         // });
 //         //setNweets(nweetArray);
 
