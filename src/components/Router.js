@@ -6,8 +6,7 @@ import Navigation from "components/Navigation";
 import { useState } from "react/cjs/react.development";
 
 
-const AppRouter = ({ isLoggendIn, userObj }) => {
-
+const AppRouter = ({ isLoggendIn, userObj, refreshUser }) => {
     return (
         <Router>
             {isLoggendIn && <Navigation userObj={userObj} />}
@@ -15,7 +14,7 @@ const AppRouter = ({ isLoggendIn, userObj }) => {
                 { isLoggendIn? (
                     <>
                     <Route path="/" element={<Home userObj={userObj}/>} />
-                    <Route path="/profile" element={<Profile userObj={userObj}/>} />
+                    <Route path="/profile" element={<Profile refreshUser={refreshUser} userObj={userObj} />} />
                     </>
                 ) : (
                     <Route path="/" element={<Auth />} />

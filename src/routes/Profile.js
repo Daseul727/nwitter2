@@ -1,11 +1,11 @@
 import { authService, dbService } from "fbase";
 import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import { collection, query, where, onSnapshot, orderBy, getDocs} from "firebase/firestore";
+import { collection, query, where, onSnapshot, orderBy, getDocs, updateDoc} from "firebase/firestore";
 import Nweet from "components/Nweet";
+import { updateProfile } from "firebase/auth";
 
-
-const Profile = ({ userObj }) => {
+const Profile = ({ userObj, refreshUser }) => {
 
     const [nweet, setNweet] = useState("");
     const [nweets, setNweets] = useState([]);
@@ -25,8 +25,13 @@ const Profile = ({ userObj }) => {
         setNewDisplayName(value);
     }
     
-    const onSubmit = (event) => {
+    const onSubmit = async (event) => {
         event.preventDefault();
+
+        if(userObj.displayName !== newDisplayName) {
+            await userObj.updateProfile({ displayName : newDisplayName });
+            refreshUser();
+        }
     }
 
 //     const getMyNweets = async () => {
